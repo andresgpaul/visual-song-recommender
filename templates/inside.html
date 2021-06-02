@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visual Song Recommender</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/index.css"> -->
+    <!-- <script type="module" src="../static/spotify.js"></script> -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="../static/index.js"></script>
+    <script src="../static/bundle.js"></script>
+  </head>
+  <body>
+    <h1 style="justify-content: center; display: grid">
+      Automatic Spotify Song Selection through Facial Emotion Recognition
+    </h1>
+    <p>
+      The relationship between sound and images have been explored since the
+      advent of movies, and even earlier. The project work aims to create a
+      software able to automatically select a song given an image through facial
+      emotion recognition. A Neural Network is trained in order to perform
+      facial emotion recognition on images. Given a previously unseen image and
+      given the emotion label assigned by the network, the software will select
+      a proper song through the Spotify API by mean of a mapping between
+      emotions and song descriptions provided by Spotify streaming service.
+    </p>
+    <div class="box" style="display: grid; justify-content: center">
+      <input
+        id="imageinput"
+        type="file"
+        name="image"
+        onchange="readUrl(this)"
+      />
+      <!-- <button name="send" id="sendbutton">Send</button> -->
+      <label
+        name="send"
+        id="sendbutton"
+        for="file"
+        style="width: 100px; cursor: pointer; border: outset"
+      >
+        Upload Image
+      </label>
+      <br />
+      <img id="imagebox" src="" width="500" />
+      <p id="send-tst" style="width: 200px; cursor: pointer; border: outset">
+        Get recommended songs
+      </p>
+      <!-- <p id="emotion" name="emotion">{{ emotion }}</p> -->
+      <div id="url">
+        <p>Here are you recommended songs:</p>
+      </div>
+      <!-- <img id="imageTest" src="" width="500" /> -->
+    </div>
+  </body>
+</html>
