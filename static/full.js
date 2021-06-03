@@ -5,12 +5,7 @@ var spotifyApi = new SpotifyWebApi({
   clientSecret: "58ac47fad3784cf193becfd7b99bcc9a",
 });
 
-// spotifyApi.setAccessToken(
-//   "BQCsyXTRLxfc1EXsQiuZcJaoYgmCYXdZNQaqQBPDpEBjVuqglSgg57-BHzN8v1B2D1EuzPWMkPQfj5iGFRbmMnE_ltqEjqiHgkSknZP1mctVdi7EVED5xYM7hRiSPflpfU0Eo3rMB27QXL_019eU"
-// );
-
 var imSent = 0;
-// var emGlob = '';
 
 window.onload = () => {
   $("#sendbutton").click(() => {
@@ -35,9 +30,6 @@ window.onload = () => {
         success: function (data) {
           sMsg.innerHTML =
             "Image uploaded successfully! Click below to get songs.";
-          //   bytestring = data["status"];
-          //   image = bytestring.split("'")[1];
-          //   imagebox.attr("ng-src", "data:image/jpeg;base64," + image);
 
           imSent = getEmotion(); // call backend and detect emotion from image
         },
@@ -93,7 +85,6 @@ function getEmotion() {
     var pred = Object.values(data);
     var emPred = document.getElementById("em-pred");
     emPred.innerHTML = pred;
-    // emGlob = pred;
     $('.emGen').hide();
     $('#' + pred + 'G').show();
   });
@@ -107,7 +98,6 @@ function recm(numSongs, genres) {
     t_mode = 0;
     t_valence = 0.3;
     t_tempo = 100;
-    // genres = ["garage", "heavy-metal", "metal", "punk", "punk-rock"];
   } else if (emotion == "Disgust") {
     t_energy = 0.8;
     t_mode = Math.round(Math.random());
@@ -117,7 +107,6 @@ function recm(numSongs, genres) {
       (t_valence = 0), 2;
     }
     t_tempo = 110;
-    // genres = ["dance", "electronic", "pop", "r-n-b", "rock"];
   } else if (emotion == "Fear") {
     t_energy = 0.65;
     t_mode = 0;
@@ -125,33 +114,28 @@ function recm(numSongs, genres) {
     // target_instrumentalness = 0.9;
     t_valence = 0.65;
     t_tempo = 120;
-    // genres = ["alternative", "black-metal", "classical", "goth", "psych-rock"];
   } else if (emotion == "Happy") {
     // target_danceability = 0.6;
     t_energy = 0.8;
     t_mode = 1;
     t_valence = 1;
     t_tempo = 100;
-    // genres = ["dance", "happy", "party", "pop", "rock"];
   } else if (emotion == "Neutral") {
     t_energy = 0.5;
     t_mode = Math.round(Math.random());
     t_valence = 0.5;
     t_tempo = Math.floor(Math.random() * (200 - 60 + 1) + 60);
-    // genres = ["acoustic", "chill", "classical", "piano", "study"];
   } else if (emotion == "Sad") {
     t_energy = 0.25;
     t_mode = 0;
     // target_acousticness = 0.6;
     t_valence = 0.1;
     t_tempo = 70;
-    // genres = ["emo", "piano", "pop", "rainy-day", "sad"];
   } else if (emotion == "Surprise") {
     t_energy = 0.85;
     t_mode = 1;
     t_valence = 0.65;
     t_tempo = 150;
-    // genres = ["alternative", "indie", "rock"];
   }
   spotifyApi
     .getRecommendations({

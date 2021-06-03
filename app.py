@@ -1,17 +1,12 @@
 from flask import Flask, json, render_template, request, jsonify
-# from PIL import Image
 import os
-# import io
 import sys
 import numpy as np
 import cv2
-# import base64
 import keras
 from keras.models import model_from_json
 from keras.preprocessing import image
 from keras.preprocessing.image import img_to_array
-# import spotipy
-# from spotipy.oauth2 import SpotifyClientCredentials
 
 
 app = Flask(__name__)
@@ -31,7 +26,6 @@ def detectEmotion():
 
     new_yt_model = keras.models.load_model('fer.h5')
     new_yt_model.load_weights("fer_weights.h5")
-    # face_haar_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     faces = face_cascade.detectMultiScale(gray, 1.1, 1)
@@ -46,18 +40,7 @@ def detectEmotion():
         max_index = np.argmax(predictions[0])
         emotion_detection = ('Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral')
         emotion_prediction = emotion_detection[max_index]
-        #cv2.putText(resize_image, emotion_prediction, (int(x, int(y))))
-        # print(emotion_prediction)
-        #resize_image = cv2.resize(test_image, (1000, 700))
-        #cv2_imshow(resize_image)
-        # font = cv2.FONT_HERSHEY_SIMPLEX
-        # org = (50, 50)
-        # fontScale = 1
-        # color = (255,0,0)
-        # thickness = 2
-        # image = cv2.putText(img, emotion_prediction, org, font, 
-        #                     fontScale, color, thickness, cv2.LINE_AA)
-        #cv2_imshow(image)
+        
     print(emotion_prediction)
     return emotion_prediction
 
@@ -76,12 +59,10 @@ def test():
 
     new_yt_model = keras.models.load_model('fer.h5')
     new_yt_model.load_weights("fer_weights.h5")
-    # face_haar_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     emotion = detectEmotion()
 
-    # return jsonify({'status': 'success'})
     return jsonify('emotion', emotion)
 
 
