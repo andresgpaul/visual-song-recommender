@@ -1,6 +1,8 @@
 function readUrl(input) {
-  var load = document.getElementById("s-msg");
-  load.innerHTML = "";
+  var sMsg = document.getElementById("s-msg");
+  sMsg.innerHTML = "";
+  var emPred = document.getElementById("em-pred");
+  emPred.innerHTML = "";
   imagebox = $('#imagebox');
   console.log("evoked readUrl");
   if (input.files && input.files[0]) {
