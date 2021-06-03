@@ -1,4 +1,6 @@
 function readUrl(input) {
+  var load = document.getElementById("s-msg");
+  load.innerHTML = "";
   imagebox = $('#imagebox');
   console.log("evoked readUrl");
   if (input.files && input.files[0]) {
