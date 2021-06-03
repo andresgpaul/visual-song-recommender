@@ -6492,6 +6492,9 @@ var spotifyApi = new SpotifyWebApi({
 //   "BQCsyXTRLxfc1EXsQiuZcJaoYgmCYXdZNQaqQBPDpEBjVuqglSgg57-BHzN8v1B2D1EuzPWMkPQfj5iGFRbmMnE_ltqEjqiHgkSknZP1mctVdi7EVED5xYM7hRiSPflpfU0Eo3rMB27QXL_019eU"
 // );
 
+var imSent = 0;
+// var emGlob = '';
+
 window.onload = () => {
   $("#sendbutton").click(() => {
     var sMsg = document.getElementById("s-msg");
@@ -6518,14 +6521,14 @@ window.onload = () => {
           //   bytestring = data["status"];
           //   image = bytestring.split("'")[1];
           //   imagebox.attr("ng-src", "data:image/jpeg;base64," + image);
-          
-          getEmotion(); // call backend and detect emotion from image
+
+          imSent = getEmotion(); // call backend and detect emotion from image
         },
       });
     }
   });
-  const limit = 5;
   // make maximum 5 selectable checkboxes, need to uncheck to keep checking
+  const limit = 5;
   $("input.gnre").on("change", function (evt) {
     if ($(this).siblings(":checked").length >= limit) {
       this.checked = false;
@@ -6539,21 +6542,26 @@ window.onload = () => {
     } else {
       spotifyApi.setAccessToken(tk);
 
-      // get marked genres and put them inside array
-      var genres = [];
-      var markedCheckbox = document.getElementsByClassName("gnre");
-      for (var checkbox of markedCheckbox) {
-        if (checkbox.checked) {
-          genres.push(checkbox.name);
-        }
-      }
-      // check marked genres, if none marked: alert, else check number of songs selected and continue
-      if (!genres.length) {
-        alert("Select at least one genre");
+      // check if image has been uploaded
+      if (imSent == 0) {
+        alert("Upload an image");
       } else {
-        var numSongs = document.getElementById("num").value;
-        // getEmotion(numSongs);
-        recm(numSongs, genres);
+        // get marked genres and put them inside array
+        var genres = [];
+        var markedCheckbox = document.getElementsByClassName("gnre");
+        for (var checkbox of markedCheckbox) {
+          if (checkbox.checked) {
+            genres.push(checkbox.name);
+          }
+        }
+        // check marked genres, if none marked: alert, else check number of songs selected and continue
+        if (!genres.length) {
+          alert("Select at least one genre");
+        } else {
+          var numSongs = document.getElementById("num").value;
+          // getEmotion(numSongs);
+          recm(numSongs, genres);
+        }
       }
     }
   });
@@ -6566,11 +6574,13 @@ function getEmotion() {
     contentType: "application/json",
   }).done(function (data) {
     var pred = Object.values(data);
-    console.log(pred[0]);
-    // recm(numSongs, pred);
     var emPred = document.getElementById("em-pred");
     emPred.innerHTML = pred;
+    // emGlob = pred;
+    $('.emGen').hide();
+    $('#' + pred + 'G').show();
   });
+  return 1;
 }
 
 function recm(numSongs, genres) {
@@ -6653,21 +6663,20 @@ function recm(numSongs, genres) {
           target.removeChild(target.lastChild);
         }
         for (var i = 0; i < Object.keys(urls).length; i++) {
-          // var d = document.createElement("div");
           var p = document.createElement("p");
           var b = document.createElement("br");
           var a = document.createElement("a");
-          // p.insertAdjacentText("beforeend", songs[i] + " by " + arts_name[i] + ":\n");
           p.innerHTML = songs[i] + " by " + arts_name[i] + ":\n";
           a.setAttribute("href", urls[i]);
           a.setAttribute("target", "_blank");
           a.setAttribute("rel", "noopener noreferrer");
-          // a.insertAdjacentText("beforeend", urls[i]);
           a.innerHTML = urls[i];
           p.appendChild(b);
           p.appendChild(a);
           target.appendChild(p);
         }
+
+        $("body,html").animate({ scrollTop: $(document).height() }, 1200);
       },
       function (err) {
         console.error(err);

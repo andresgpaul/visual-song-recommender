@@ -3,6 +3,8 @@ function readUrl(input) {
   sMsg.innerHTML = "";
   var emPred = document.getElementById("em-pred");
   emPred.innerHTML = "";
+  $('.emGen').hide();
+  
   imagebox = $('#imagebox');
   console.log("evoked readUrl");
   if (input.files && input.files[0]) {
@@ -13,4 +15,5 @@ function readUrl(input) {
     };
     reader.readAsDataURL(input.files[0]);
   }
+  $("body,html").animate({ scrollTop: $("#send-tst").offset().top }, 1500);
 }

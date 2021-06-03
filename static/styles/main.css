@@ -1,0 +1,15 @@
+h1 {
+  justify-content: center;
+  display: grid;
+  width: 80%;
+  margin-left: 10vw;
+}
+
+.box {
+  display: grid;
+  justify-content: center;
+}
+
+.emGen {
+    display: none;
+}

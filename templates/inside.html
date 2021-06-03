@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Visual Song Recommender</title>
-    <!-- <link rel="stylesheet" type="text/css" href="../static/index.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
     <!-- <script type="module" src="../static/spotify.js"></script> -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -13,14 +13,7 @@
     <script src="../static/bundle.js"></script>
   </head>
   <body>
-    <h1
-      style="
-        justify-content: center;
-        display: grid;
-        width: 80%;
-        margin-left: 10vw;
-      "
-    >
+    <h1>
       Automatic Spotify Song Selection through Facial Emotion Recognition
     </h1>
     <p style="width: 80%; margin-left: 10vw">
@@ -33,7 +26,7 @@
       a proper song through the Spotify API by mean of a mapping between
       emotions and song descriptions provided by Spotify streaming service.
     </p>
-    <div class="box" style="display: grid; justify-content: center">
+    <div class="box">
       <p>
         Get an access token
         <a
@@ -70,7 +63,7 @@
         Upload Image
       </label>
       <div id="fresh">
-        <p id="s-msg"></p>
+        <p id="s-msg" style="margin-bottom: 0;"></p>
         <div style="display: flex">
           <p style="padding-right: 20px">Predicted emotion:</p>
           <p id="em-pred"></p>
@@ -92,117 +85,130 @@
       </div>
       <div>
         <p>Check the types of genres you prefer (up to 5):</p>
-        <input
-          class="gnre"
-          type="checkbox"
-          id="acoustic"
-          name="acoustic"
-        />acoustic
-        <input
-          class="gnre"
-          type="checkbox"
-          id="alternative"
-          name="alternative"
-        />alternative
-        <input
-          class="gnre"
-          type="checkbox"
-          id="black-metal"
-          name="black-metal"
-        />black-metal
-        <input class="gnre" type="checkbox" id="chill" name="chill" />chill
-        <input
-          class="gnre"
-          type="checkbox"
-          id="classical"
-          name="classical"
-        />classical
-        <input class="gnre" type="checkbox" id="dance" name="dance" />dance
-        <br />
-        <input
-          class="gnre"
-          type="checkbox"
-          id="death-metal"
-          name="death-metal"
-        />death-metal
-        <input
-          class="gnre"
-          type="checkbox"
-          id="deep-house"
-          name="deep-house"
-        />deep-house
-        <input
-          class="gnre"
-          type="checkbox"
-          id="dubstep"
-          name="dubstep"
-        />dubstep <input class="gnre" type="checkbox" id="edm" name="edm" />edm
-        <input
-          class="gnre"
-          type="checkbox"
-          id="electronic"
-          name="electronic"
-        />electronic
-        <input class="gnre" type="checkbox" id="emo" name="emo" />emo
-        <br />
-        <input class="gnre" type="checkbox" id="garage" name="garage" />garage
-        <input class="gnre" type="checkbox" id="goth" name="goth" />goth
-        <input class="gnre" type="checkbox" id="happy" name="happy" />happy
-        <input
-          class="gnre"
-          type="checkbox"
-          id="hard-core"
-          name="hard-core"
-        />hard-core
-        <input
-          class="gnre"
-          type="checkbox"
-          id="heavy-metal"
-          name="heavy-metal"
-        />heavy-metal
-        <input
-          class="gnre"
-          type="checkbox"
-          id="hip-hop"
-          name="hip-hop"
-        />hip-hop
-        <br />
-        <input class="gnre" type="checkbox" id="indie" name="indie" />indie
-        <input class="gnre" type="checkbox" id="metal" name="metal" />metal
-        <input class="gnre" type="checkbox" id="party" name="party" />party
-        <input class="gnre" type="checkbox" id="piano" name="piano" />piano
-        <input class="gnre" type="checkbox" id="pop" name="pop" />pop
-        <input
-          class="gnre"
-          type="checkbox"
-          id="psych-rock"
-          name="psych-rock"
-        />psych-rock
-        <br />
-        <input class="gnre" type="checkbox" id="punk" name="punk" />punk
-        <input
-          class="gnre"
-          type="checkbox"
-          id="punk-rock"
-          name="punk-rock"
-        />punk-rock
-        <input
-          class="gnre"
-          type="checkbox"
-          id="rainy-day"
-          name="rainy-day"
-        />rainy-day
-        <input class="gnre" type="checkbox" id="rock" name="rock" />rock
-        <input
-          class="gnre"
-          type="checkbox"
-          id="rock-n-roll"
-          name="rock-n-roll"
-        />rock-n-roll
-        <input class="gnre" type="checkbox" id="r-n-b" name="r-n-b" />r-n-b
-        <br />
-        <input class="gnre" type="checkbox" id="sad" name="sad" />sad
-        <input class="gnre" type="checkbox" id="soul" name="soul" />soul
+        <div class="emGen" id="AngryG">
+          <input class="gnre" type="checkbox" id="black-metal" name="black-metal" />
+          <label class="gnre" for="black-metal">black-metal</label>
+          <input class="gnre" type="checkbox" id="death-metal" name="death-metal" />
+          <label class="gnre" for="death-metal">death-metal</label>
+          <input class="gnre" type="checkbox" id="deep-house" name="deep-house" />
+          <label class="gnre" for="deep-house">deep-house</label>
+          <input class="gnre" type="checkbox" id="dubstep" name="dubstep" />
+          <label class="gnre" for="dubstep">dubstep</label>
+          <input class="gnre" type="checkbox" id="edm" name="edm" />
+          <label class="gnre" for="edm">edm</label>
+          <input class="gnre" type="checkbox" id="electronic" name="electronic" />
+          <label class="gnre" for="electronic">electronic</label>
+          <br />
+          <input class="gnre" type="checkbox" id="emo" name="emo" />
+          <label class="gnre" for="emo">emo</label>
+          <input class="gnre" type="checkbox" id="garage" name="garage" />
+          <label class="gnre" for="garage">garage</label>
+          <input class="gnre" type="checkbox" id="goth" name="goth" />
+          <label class="gnre" for="goth">goth</label>
+          <input class="gnre" type="checkbox" id="hard-rock" name="hard-rock" />
+          <label class="gnre" for="hard-rock">hard-rock</label>
+          <input class="gnre" type="checkbox" id="hard-core" name="hard-core" />
+          <label class="gnre" for="hard-core">hard-core</label>
+          <input class="gnre" type="checkbox" id="heavy-metal" name="heavy-metal" />
+          <label class="gnre" for="heavy-metal">heavy-metal</label>
+          <br />
+          <input class="gnre" type="checkbox" id="metal" name="metal" />
+          <label class="gnre" for="metal">metal</label>
+          <input class="gnre" type="checkbox" id="pop" name="pop" />
+          <label class="gnre" for="pop">pop</label>
+          <input class="gnre" type="checkbox" id="psych-rock" name="psych-rock" />
+          <label class="gnre" for="psych-rock">psych-rock</label>
+          <input class="gnre" type="checkbox" id="punk" name="punk" />
+          <label class="gnre" for="punk">punk</label>
+          <input class="gnre" type="checkbox" id="punk-rock" name="punk-rock" />
+          <label class="gnre" for="punk-rock">punk-rock</label>
+          <input class="gnre" type="checkbox" id="rock" name="rock" />
+          <label class="gnre" for="rock">rock</label>
+        </div>
+        <div class="emGen" id="DisgustG">
+          <input class="gnre" type="checkbox" id="dance" name="dance" />
+          <label class="gnre" for="dance">dance</label>
+          <input class="gnre" type="checkbox" id="electronic" name="electronic" />
+          <label class="gnre" for="electronic">electronic</label>
+          <input class="gnre" type="checkbox" id="pop" name="pop" />
+          <label class="gnre" for="pop">pop</label>
+          <input class="gnre" type="checkbox" id="r-n-b" name="r-n-b" />
+          <label class="gnre" for="r-n-b">r-n-b</label>
+          <input class="gnre" type="checkbox" id="rock" name="rock" />
+          <label class="gnre" for="rock">rock</label>
+          <input class="gnre" type="checkbox" id="soul" name="soul" />
+          <label class="gnre" for="soul">soul</label>
+        </div>
+        <div class="emGen" id="FearG">
+          <input class="gnre" type="checkbox" id="alternative" name="alternative" />
+          <label class="gnre" for="alternative">alternative</label>
+          <input class="gnre" type="checkbox" id="black-metal" name="black-metal" />
+          <label class="gnre" for="black-metal">black-metal</label>
+          <input class="gnre" type="checkbox" id="classical" name="classical" />
+          <label class="gnre" for="classical">classical</label>
+          <input class="gnre" type="checkbox" id="death-metal" name="death-metal" />
+          <label class="gnre" for="death-metal">death-metal</label>
+          <br />
+          <input class="gnre" type="checkbox" id="goth" name="goth" />
+          <label class="gnre" for="goth">goth</label>
+          <input class="gnre" type="checkbox" id="hip-hop" name="hip-hop" />
+          <label class="gnre" for="hip-hop">hip-hop</label>
+          <input class="gnre" type="checkbox" id="psych-rock" name="psych-rock" />
+          <label class="gnre" for="psych-rock">psych-rock</label>
+          <input class="gnre" type="checkbox" id="rock" name="rock" />
+          <label class="gnre" for="rock">rock</label>
+        </div>
+        <div class="emGen" id="HappyG">
+          <input class="gnre" type="checkbox" id="dance" name="dance" />
+          <label class="gnre" for="dance">dance</label>
+          <input class="gnre" type="checkbox" id="happy" name="happy" />
+          <label class="gnre" for="happy">happy</label>
+          <input class="gnre" type="checkbox" id="party" name="party" />
+          <label class="gnre" for="party">party</label>
+          <input class="gnre" type="checkbox" id="pop" name="pop" />
+          <label class="gnre" for="pop">pop</label>
+          <input class="gnre" type="checkbox" id="rock" name="rock" />
+          <label class="gnre" for="rock">rock</label>
+          <input class="gnre" type="checkbox" id="rock-n-roll" name="rock-n-roll" />
+          <label class="gnre" for="rock-n-roll">rock-n-roll</label>
+        </div>
+        <div class="emGen" id="NeutralG">
+          <input class="gnre" type="checkbox" id="acoustic" name="acoustic" />
+          <label class="gnre" for="acoustic">acoustic</label>
+          <input class="gnre" type="checkbox" id="alternative" name="alternative" />
+          <label class="gnre" for="alternative">alternative</label>
+          <input class="gnre" type="checkbox" id="chill" name="chill" />
+          <label class="gnre" for="chill">chill</label>
+          <input class="gnre" type="checkbox" id="classical" name="classical" />
+          <label class="gnre" for="classical">classical</label>
+          <br />
+          <input class="gnre" type="checkbox" id="indie" name="indie" />
+          <label class="gnre" for="indie">indie</label>
+          <input class="gnre" type="checkbox" id="piano" name="piano" />
+          <label class="gnre" for="piano">piano</label>
+          <input class="gnre" type="checkbox" id="study" name="study" />
+          <label class="gnre" for="study">study</label>
+        </div>
+        <div class="emGen" id="SadG">
+          <input class="gnre" type="checkbox" id="emo" name="emo" />
+          <label class="gnre" for="emo">emo</label>
+          <input class="gnre" type="checkbox" id="piano" name="piano" />
+          <label class="gnre" for="piano">piano</label>
+          <input class="gnre" type="checkbox" id="pop" name="pop" />
+          <label class="gnre" for="pop">pop</label>
+          <input class="gnre" type="checkbox" id="rainy-day" name="rainy-day" />
+          <label class="gnre" for="rainy-day">rainy-day</label>
+          <input class="gnre" type="checkbox" id="sad" name="sad" />
+          <label class="gnre" for="sad">sad</label>
+        </div>
+        <div class="emGen" id="SurpriseG">
+          <input class="gnre" type="checkbox" id="alternative" name="alternative" />
+          <label class="gnre" for="alternative">alternative</label>
+          <input class="gnre" type="checkbox" id="indie" name="indie" />
+          <label class="gnre" for="indie">indie</label>
+          <input class="gnre" type="checkbox" id="rock" name="rock" />
+          <label class="gnre" for="rock">rock</label>
+        </div>
       </div>
       <p id="send-tst" style="width: 200px; cursor: pointer; border: outset">
         Get recommended songs
