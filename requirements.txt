@@ -5,11 +5,3 @@ Keras==2.4.3
 Keras-Preprocessing==1.1.2
 numpy==1.19.4
 opencv-python==4.5.2.52
-tensorboard==2.4.1
-tensorboard-plugin-wit==1.8.0
-tensorflow==2.4.1
-tensorflow-estimator==2.4.0
-tensorflow-hub==0.9.0
-tensorflowjs==3.6.0
-torch==1.8.1
-torchvision==0.9.1
