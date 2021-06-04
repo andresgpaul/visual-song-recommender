@@ -1,7 +1,6 @@
 absl-py==0.12.0
 appnope==0.1.2
 argon2-cffi==20.1.0
--e git+https://github.com/optas/artemis.git@d84b719573f70d5f20eae724d5d7c8855f6ee3af#egg=artemis
 asgiref==3.3.1
 astroid==2.4.2
 astunparse==1.6.3
@@ -16,13 +15,9 @@ Brotli==1.0.9
 brotlipy==0.7.0
 cachetools==4.2.1
 certifi==2020.6.20
-cffi @ file:///opt/concourse/worker/volumes/live/b9607b09-b777-4ff7-53dc-287727eb8574/volume/cffi_1600699191154/work
 chardet==3.0.4
 click==7.1.2
 cloudpickle==1.6.0
-conda==4.9.1
-conda-package-handling @ file:///opt/concourse/worker/volumes/live/a7e34989-4c54-4cb6-4156-4e58ee270730/volume/conda-package-handling_1603018121300/work
-cryptography @ file:///opt/concourse/worker/volumes/live/aeb63a26-659e-4edb-5405-74ba8e0c76f2/volume/cryptography_1601046839724/work
 cycler==0.10.0
 dask==2021.4.1
 decorator==4.4.2
@@ -89,10 +84,8 @@ ptyprocess==0.6.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycosat==0.6.3
-pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
 Pygments==2.7.3
 pylint==2.6.0
-pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
 pyparsing==2.4.7
 pyrsistent==0.17.3
 PySocks @ file:///opt/concourse/worker/volumes/live/85a5b906-0e08-41d9-6f59-084cee4e9492/volume/pysocks_1594394636991/work
