@@ -41,13 +41,11 @@ def detectEmotion():
         emotion_detection = ('Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral')
         emotion_prediction = emotion_detection[max_index]
         
-    print(emotion_prediction)
     return emotion_prediction
 
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
-    print("log: got at test", file=sys.stderr)
     file = request.files['image'].read()  # image in byte file
     npimg = np.fromstring(file, np.uint8) # image in np.array type
     img = cv2.imdecode(npimg, cv2.IMREAD_COLOR) # image in np.array type but decoded
@@ -73,7 +71,6 @@ def home():
 
 @app.after_request
 def after_request(response):
-    print("log: setting cors", file=sys.stderr)
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Headers',
                          'Content-Type,Authorization')
