@@ -8,6 +8,7 @@ h1 {
 .box {
   display: grid;
   justify-content: center;
+  margin-bottom: 120px;
 }
 
 .emGen {
