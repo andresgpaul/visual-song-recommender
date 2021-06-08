@@ -1,8 +1,12 @@
 click==7.1.1
+cv2==4.5.2
 Flask==1.1.1
 gunicorn==20.1.0
 itsdangerous==1.1.0
 Jinja2==2.11.1
+keras==2.4.3
 MarkupSafe==1.1.1
+numpy==1.19.4
 python-dotenv==0.12.0
+spotipy
 Werkzeug==1.0.1
