@@ -2,19 +2,17 @@
 <html>
   <head>
     <title>Visual Song Recommender</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css" />
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="../static/index.js"></script>
-    <script src="../static/bundle.js"></script>
+    <script src="../static/client.js"></script>
   </head>
   <body>
-    <h1>
-      Automatic Spotify Song Selection through Facial Emotion Recognition
-    </h1>
+    <h1>Automatic Spotify Song Selection through Facial Emotion Recognition</h1>
     <p style="width: 80%; margin-left: 10vw">
       The relationship between sound and images have been explored since the
       advent of movies, and even earlier. The project work aims to create a
@@ -25,25 +23,12 @@
       a proper song through the Spotify API by mean of a mapping between
       emotions and song descriptions provided by Spotify streaming service.
     </p>
+    <br />
     <div class="box">
-      <p>
-        Get an access token
-        <a
-          href="https://developer.spotify.com/console/get-artist/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >here</a
-        >
-        by clicking on Get Token (select any scope you want).
+      <p style="max-width: 500px;">
+        Upload an image of your face (cropped as much as possible, removing
+        background) with an expression to get a song recommendation
       </p>
-      <input
-        type="text"
-        id="token"
-        name="token"
-        placeholder="Enter spotify's access token here"
-        style="width: 500px"
-      />
-      <br />
       <input
         id="imageinput"
         type="file"
@@ -61,8 +46,9 @@
         Upload Image
       </label>
       <div id="fresh">
-        <p id="s-msg" style="margin-bottom: 0;"></p>
+        <p id="s-msg" style="margin-bottom: 0"></p>
       </div>
+      <br />
       <p>Here are your recommended songs:</p>
       <div id="url"></div>
     </div>
