@@ -19,10 +19,6 @@ entrypoint: gunicorn -b :$PORT main:app
 runtime_config:
   python_version: 3
 
-dependencies:
-  - pip=20.0
-  - python=3.8.3
-  - tensorflow-gpu=2.2
 # This sample incurs costs to run on the App Engine flexible environment.
 # The settings below are to reduce costs during testing and are not appropriate
 # for production use. For more information, see:
