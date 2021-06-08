@@ -22,7 +22,7 @@ RUN pip3 install \
     h5py==2.9.0 \
     pyyaml==3.13 \
     requests==2.21.0 \
-    tensorflow==2.2.0 \
+    tensorflow==2.2 \
     tensorflow-probability==0.5.0 \
     keras==2.2.4 \
     --no-cache-dir
