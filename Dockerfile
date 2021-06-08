@@ -18,7 +18,6 @@ RUN apt-get update -y
 RUN apt install libgl1-mesa-glx -y
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 
-USER rstudio
 RUN pip3 install \
     h5py==2.9.0 \
     pyyaml==3.13 \
