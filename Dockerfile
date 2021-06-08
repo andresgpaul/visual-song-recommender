@@ -18,6 +18,16 @@ RUN apt-get update -y
 RUN apt install libgl1-mesa-glx -y
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 
+USER rstudio
+RUN pip3 install \
+    h5py==2.9.0 \
+    pyyaml==3.13 \
+    requests==2.21.0 \
+    tensorflow-gpu==1.12.0 \
+    tensorflow-probability==0.5.0 \
+    keras==2.2.4 \
+    --no-cache-dir
+
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers
