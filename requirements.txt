@@ -4,4 +4,4 @@ keras
 numpy
 opencv-python
 spotipy
-tensorflow-cpu
+tensorflow==2.2
