@@ -9,4 +9,5 @@ numpy
 opencv-python
 python-dotenv==0.12.0
 spotipy
+tensorflow
 Werkzeug==1.0.1
