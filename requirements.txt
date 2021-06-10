@@ -2,6 +2,6 @@ Flask
 gunicorn
 keras==2.4.3
 numpy
-opencv-python==4.5.2
+opencv-python
 spotipy
 tensorflow==2.4.1
