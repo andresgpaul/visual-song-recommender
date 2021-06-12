@@ -37,8 +37,7 @@
 function getEmotion() {
   $.ajax({
     // url: "http://localhost:5000/emotion",
-    // url: "/emotion",
-    url: "https://visual-song-recommender.herokuapp.com/emotion",
+    url: "/emotion",
     type: "GET",
     contentType: "application/json",
     error: function (data) {
