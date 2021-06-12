@@ -1,7 +1,8 @@
 const video = document.getElementById("video");
 
 
-var socket = io.connect();
+// var socket = io.connect();
+var socket = io.connect({secure: true, transports: ["websocket"]});
 socket.on('connect', function() {
     console.log("SOCKET CONNECTED")
 })
