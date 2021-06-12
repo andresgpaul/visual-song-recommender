@@ -1,8 +1,8 @@
 const video = document.getElementById("video");
 
 
-// var socket = io.connect('http://127.0.0.1:5000');
-var socket = io.connect();
+// var socket = io.connect();
+var socket = io.connect({secure: true, transports: ["flashsocket","polling","websocket"]});
 socket.on('connect', function() {
     console.log("SOCKET CONNECTED")
 })
