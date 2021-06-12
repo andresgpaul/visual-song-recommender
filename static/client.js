@@ -1,38 +1,38 @@
-window.onload = () => {
-  $("#sendbutton").click(() => {
-    var ima = document.getElementById("imagebox");
-    if (ima.getAttribute("src") == "") {
-      alert("Upload an image");
-    } else {
-      var sMsg = document.getElementById("s-msg");
-      sMsg.innerHTML = "Loading image...";
-      imagebox = $("#imagebox");
-      input = $("#imageinput")[0];
-      if (input.files && input.files[0]) {
-        let formData = new FormData();
-        formData.append("image", input.files[0]);
-        $.ajax({
-          url: "http://localhost:5000/test", // fix this to your liking
-          type: "POST",
-          data: formData,
-          cache: false,
-          processData: false,
-          contentType: false,
-          error: function (data) {
-            console.log("upload error", data);
-            console.log(data.getAllResponseHeaders());
-          },
-          success: function (data) {
-            sMsg.innerHTML =
-              "Image uploaded successfully! Click below to get songs.";
+// window.onload = () => {
+//   $("#sendbutton").click(() => {
+//     var ima = document.getElementById("imagebox");
+//     if (ima.getAttribute("src") == "") {
+//       alert("Upload an image");
+//     } else {
+//       var sMsg = document.getElementById("s-msg");
+//       sMsg.innerHTML = "Loading image...";
+//       imagebox = $("#imagebox");
+//       input = $("#imageinput")[0];
+//       if (input.files && input.files[0]) {
+//         let formData = new FormData();
+//         formData.append("image", input.files[0]);
+//         $.ajax({
+//           url: "http://localhost:5000/test", // fix this to your liking
+//           type: "POST",
+//           data: formData,
+//           cache: false,
+//           processData: false,
+//           contentType: false,
+//           error: function (data) {
+//             console.log("upload error", data);
+//             console.log(data.getAllResponseHeaders());
+//           },
+//           success: function (data) {
+//             sMsg.innerHTML =
+//               "Image uploaded successfully! Click below to get songs.";
 
-            getEmotion(); // call backend and detect emotion from image
-          },
-        });
-      }
-    }
-  });
-};
+//             getEmotion(); // call backend and detect emotion from image
+//           },
+//         });
+//       }
+//     }
+//   });
+// };
 
 function getEmotion() {
   $.ajax({
@@ -71,7 +71,7 @@ function printSongs(recs) {
     target.appendChild(p);
   }
 
-  $("body,html").animate({ scrollTop: $(document).height() }, 1200);
+  // $("body,html").animate({ scrollTop: $('#exp').offset().top }, 1200);
 
   window.open(urls[0]);
 }
