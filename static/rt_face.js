@@ -1,13 +1,10 @@
 const video = document.getElementById("video");
 
 // var socket = io.connect();
-var socket = io.connect(
-  "ws://visual-song-recommender.herokuapp.com/socket.io/?EIO=4&transport=websocket",
-  {
-    secure: true,
-    transports: ["flashsocket", "polling", "websocket"],
-  }
-);
+var socket = io.connect({
+  secure: true,
+  transports: ["flashsocket", "polling", "websocket"],
+});
 socket.on("connect", function () {
   console.log("SOCKET CONNECTED");
 });
