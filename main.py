@@ -5,11 +5,11 @@ from flask_socketio import SocketIO, emit
 import os
 # import sys
 import numpy as np
-import cv2
-import keras
-from keras.models import model_from_json
-from keras.preprocessing import image
-from keras.preprocessing.image import img_to_array
+# import cv2
+# import keras
+# from keras.models import model_from_json
+# from keras.preprocessing import image
+# from keras.preprocessing.image import img_to_array
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
@@ -101,7 +101,7 @@ def spotifyRec():
         t_tempo = 100
         genres = ["black-metal", "death-metal", "dubstep", "electronic", "emo", "garage", "goth",
                   "hard-rock", "hard-core", "heavy-metal", "metal", "pop", "psych-rock", "punk", "punk-rock"]
-    elif (emotion == "Disgust" or emotion == "disgust"):
+    elif (emotion == "Disgust" or emotion == "disgusted"):
         t_energy = 0.8
         t_mode = np.random.choice([0, 1])
         if (t_mode == 1):
@@ -111,7 +111,7 @@ def spotifyRec():
         t_tempo = 110
         genres = ["dance", "electronic",
                   "psych-rock", "r-n-b", "rock",  "soul"]
-    elif (emotion == "Fear" or emotion == "fear"):
+    elif (emotion == "Fear" or emotion == "fearful"):
         t_energy = 0.65
         t_mode = 0
         t_speechiness = 0.05
@@ -142,7 +142,7 @@ def spotifyRec():
         t_valence = 0.1
         t_tempo = 70
         genres = ["blues", "emo", "jazz", "piano", "pop", "rainy-day", "sad"]
-    elif (emotion == "Surprise" or emotion == "surprise"):
+    elif (emotion == "Surprise" or emotion == "surprised"):
         t_energy = 0.85
         t_mode = 1
         t_valence = 0.65
