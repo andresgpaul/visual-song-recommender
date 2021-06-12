@@ -37,7 +37,7 @@
 function getEmotion() {
   $.ajax({
     // url: "http://localhost:5000/emotion",
-    url: RootUrl + "/emotion",
+    url: "/emotion",
     type: "GET",
     contentType: "application/json",
   }).done(function (data) {
