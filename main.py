@@ -1,6 +1,9 @@
 from flask import Flask, json, render_template, request, jsonify
+###
+from flask_socketio import SocketIO, emit
+
 import os
-import sys
+# import sys
 import numpy as np
 import cv2
 import keras
@@ -12,6 +15,9 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 
 app = Flask(__name__)
+
+###
+socketio = SocketIO(app, cors_allowed_origins='*')
 
 app.secret_key = 'R4roMax1FutSk8Ba'
 
@@ -87,7 +93,7 @@ def spotifyRec():
     # print(emotion)
 
 
-    if (emotion == "Angry"):
+    if (emotion == "Angry" or emotion == "angry"):
         t_danceability = 0.3
         t_energy = 0.8
         t_mode = 0
@@ -95,7 +101,7 @@ def spotifyRec():
         t_tempo = 100
         genres = ["black-metal", "death-metal", "dubstep", "electronic", "emo", "garage", "goth",
                   "hard-rock", "hard-core", "heavy-metal", "metal", "pop", "psych-rock", "punk", "punk-rock"]
-    elif (emotion == "Disgust"):
+    elif (emotion == "Disgust" or emotion == "disgust"):
         t_energy = 0.8
         t_mode = np.random.choice([0, 1])
         if (t_mode == 1):
@@ -105,7 +111,7 @@ def spotifyRec():
         t_tempo = 110
         genres = ["dance", "electronic",
                   "psych-rock", "r-n-b", "rock",  "soul"]
-    elif (emotion == "Fear"):
+    elif (emotion == "Fear" or emotion == "fear"):
         t_energy = 0.65
         t_mode = 0
         t_speechiness = 0.05
@@ -114,7 +120,7 @@ def spotifyRec():
         t_tempo = 120
         genres = ["alternative", "black-metal", "classical",
                   "death-metal", "goth", "hip-hop", "psych-rock", "rock"]
-    elif (emotion == "Happy"):
+    elif (emotion == "Happy" or emotion == "happy"):
         t_danceability = 0.6
         t_energy = 0.8
         t_mode = 1
@@ -122,21 +128,21 @@ def spotifyRec():
         t_tempo = 100
         genres = ["bossanova", "country", "dance", "disco", "edm", "gospel", "groove", "happy", "hip-hop", "indie",
                   "j-pop", "k-pop", "reggae", "reggaeton", "road-trip", "party", "pop", "rock", "rock-n-roll", "summer"]
-    elif (emotion == "Neutral"):
+    elif (emotion == "Neutral" or emotion == "neutral"):
         t_energy = 0.5
         t_mode = np.random.choice([0, 1])
         t_valence = 0.5
         t_tempo = np.random.randint(60, 200, size=None)
         genres = ["acoustic", "alternative", "chill",
                   "classical", "indie", "jazz", "piano", "study"]
-    elif (emotion == "Sad"):
+    elif (emotion == "Sad" or emotion == "sad"):
         t_energy = 0.25
         t_mode = 0
         t_acousticness = 0.6
         t_valence = 0.1
         t_tempo = 70
         genres = ["blues", "emo", "jazz", "piano", "pop", "rainy-day", "sad"]
-    elif (emotion == "Surprise"):
+    elif (emotion == "Surprise" or emotion == "surprise"):
         t_energy = 0.85
         t_mode = 1
         t_valence = 0.65
@@ -146,7 +152,7 @@ def spotifyRec():
 
     selGenre = np.random.choice(genres, 5).tolist()
 
-    if (emotion == "Angry"):
+    if (emotion == "Angry" or emotion == "angry"):
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_danceability=t_danceability,
@@ -155,7 +161,7 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-    elif (emotion == "Fear"):
+    elif (emotion == "Fear" or emotion == "fear"):
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_energy=t_energy,
@@ -165,7 +171,7 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-    elif (emotion == "Happy"):
+    elif (emotion == "Happy" or emotion == "happy"):
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_danceability=t_danceability,
@@ -174,7 +180,7 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-    elif (emotion == "Sad"):
+    elif (emotion == "Sad" or emotion == "sad"):
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_energy=t_energy,
@@ -226,6 +232,17 @@ def test():
 def home():
     return render_template('inside.html')
 
+###
+@socketio.on('connect')
+def test_connect():
+    print("SOCKET CONNECTED")
+
+
+@socketio.on('detections')
+def handle_face_em(json, methods=['GET', 'POST']):
+    global emDetected 
+    emDetected = json['data']
+
 
 @app.after_request
 def after_request(response):
@@ -237,4 +254,5 @@ def after_request(response):
 
 
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    socketio.run(app)
