@@ -44,8 +44,70 @@ video.addEventListener("play", () => {
     // console.log(em);
     var expM = document.getElementById("exp");
     expM.innerHTML = em;
+    // socket.emit("detections", {
+    //   data: em,
+    // });
+  }, 500);
+});
+
+function sendEmotion() {
+    video.pause();
+    console.log("clicked successfully");
     socket.emit("detections", {
       data: em,
     });
-  }, 500);
-});
+}
+
+function reset() {
+    video.play();
+}
+
+function getSongs() {
+    $.ajax({
+      // url: "http://localhost:5000/emotion",
+      url: "/emotion",
+      type: "GET",
+      contentType: "application/json",
+      error: function (data) {
+        console.log("upload error", data);
+        console.log(data.getAllResponseHeaders());
+      },
+      success: function (data) {
+        console.log("get clicked");
+      },
+    }).done(function (data) {
+      var pred = Object.values(data);
+      console.log(pred);
+      var recs = pred[1];
+  
+      printSongs(recs);
+    });
+  }
+  
+  function printSongs(recs) {
+    var artists = recs["artist"];
+    var songs = recs["song"];
+    var urls = recs["url"];
+  
+    var target = document.getElementById("url");
+    while (target.firstChild) {
+      target.removeChild(target.lastChild);
+    }
+    for (var i = 0; i < Object.keys(artists).length; i++) {
+      var p = document.createElement("p");
+      var b = document.createElement("br");
+      var a = document.createElement("a");
+      p.innerHTML = songs[i] + " by " + artists[i] + ":\n";
+      a.setAttribute("href", urls[i]);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener noreferrer");
+      a.innerHTML = urls[i];
+      p.appendChild(b);
+      p.appendChild(a);
+      target.appendChild(p);
+    }
+  
+    // $("body,html").animate({ scrollTop: $('#exp').offset().top }, 1200);
+  
+    // window.open(urls[0]);
+  }

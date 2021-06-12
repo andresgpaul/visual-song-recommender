@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="../static/index.js"></script>
-    <script src="../static/client.js"></script>
+    <!-- <script src="../static/client.js"></script> -->
     <script defer src="../static/face-api.min.js"></script>
     <script defer src="../static/rt_face.js"></script>
   </head>
@@ -40,8 +40,10 @@
         autoplay
         muted
       ></video>
-      <button id="save-exp" onclick="getEmotion()">Save Expression</button>
+      <button id="save-exp" onclick="sendEmotion()">Save Expression</button>
+      <button id="reset" onclick="reset()">Reset Video</button>
       <p id="exp"></p>
+      <button id="get-songs" onclick="getSongs()">Get songs</button>
 
       <!-- <p style="max-width: 500px;">
         Upload an image of your face (cropped as much as possible, removing
