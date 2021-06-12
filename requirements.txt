@@ -1,5 +1,5 @@
 Flask
-Flask_SocketIO
+Flask_SocketIO==5.1.0
 gunicorn
 numpy
 spotipy

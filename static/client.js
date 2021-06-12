@@ -40,6 +40,13 @@ function getEmotion() {
     url: "/emotion",
     type: "GET",
     contentType: "application/json",
+    error: function (data) {
+      console.log("upload error", data);
+      console.log(data.getAllResponseHeaders());
+    },
+    success: function (data) {
+      console.log("clicked successfully");
+    },
   }).done(function (data) {
     var pred = Object.values(data);
     console.log(pred);
