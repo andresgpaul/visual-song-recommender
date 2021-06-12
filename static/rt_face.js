@@ -2,7 +2,7 @@ const video = document.getElementById("video");
 
 // var socket = io.connect();
 var socket = io.connect(
-  "wss://visual-song-recommender.herokuapp.com/socket.io/?EIO=4&transport=websocket",
+//   "wss://visual-song-recommender.herokuapp.com/socket.io/?EIO=4&transport=websocket",
   {
     secure: true,
     transports: ["flashsocket", "polling", "websocket"],
@@ -20,7 +20,7 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
-  navigator.mediaDevices.getUserMedia(
+  navigator.getUserMedia(
     { video: {} },
     (stream) => (video.srcObject = stream),
     (err) => console.error(err)
@@ -29,7 +29,7 @@ function startVideo() {
 
 var em;
 
-video.addEventListener("playing", () => {
+video.addEventListener("play", () => {
   const canvas = faceapi.createCanvasFromMedia(video);
   document.body.append(canvas);
   const displaySize = { width: video.width, height: video.height };
