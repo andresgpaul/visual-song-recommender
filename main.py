@@ -85,7 +85,7 @@ def spotifyRec():
     client_credentials_manager = SpotifyClientCredentials(
         client_id=cid, client_secret=secret)
     sp = spotipy.Spotify(
-        client_credentials_manager=client_credentials_manager, requests_timeout=120)
+        client_credentials_manager=client_credentials_manager, requests_timeout=10000)
 
     # emotion = detectEmotion()
     global emDetected
