@@ -8,7 +8,14 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+      integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      var RootUrl = '@Url.Content("~/")';
+      </script>
     <script type="text/javascript" src="../static/index.js"></script>
     <script src="../static/client.js"></script>
     <script defer src="../static/face-api.min.js"></script>
@@ -28,8 +35,14 @@
     </p>
     <br />
     <div class="box">
-
-      <video id="video" style="height: 410px;" width="720" height="560" autoplay muted></video>
+      <video
+        id="video"
+        style="height: 410px"
+        width="720"
+        height="560"
+        autoplay
+        muted
+      ></video>
       <button id="save-exp" onclick="getEmotion()">Save Expression</button>
       <p id="exp"></p>
 
@@ -58,7 +71,7 @@
       </div> -->
       <br />
       <p>Here are your recommended songs:</p>
-      <div id="url"></div>
+      <div id="url" style="max-width: 720px;"></div>
     </div>
   </body>
 </html>
