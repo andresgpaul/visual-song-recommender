@@ -2,6 +2,7 @@ const video = document.getElementById("video");
 
 // var socket = io.connect();
 var socket = io.connect(
+  'https://visual-song-recommender.herokuapp.com/',
 //   "wss://visual-song-recommender.herokuapp.com:52276/socket.io/?EIO=4&transport=websocket",
   {
     secure: true,
