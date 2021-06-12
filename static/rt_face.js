@@ -1,12 +1,13 @@
 const video = document.getElementById("video");
 
-
 // var socket = io.connect();
-var socket = io.connect('wss://visual-song-recommender.herokuapp.com/', {secure: true, transports: ["websocket"]});
-socket.on('connect', function() {
-    console.log("SOCKET CONNECTED")
-})
-
+var socket = io.connect({
+  secure: true,
+  transports: ["flashsocket", "polling", "websocket"],
+});
+socket.on("connect", function () {
+  console.log("SOCKET CONNECTED");
+});
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri("../static/models/"),
@@ -40,8 +41,8 @@ video.addEventListener("play", () => {
     // console.log(em);
     var expM = document.getElementById("exp");
     expM.innerHTML = em;
-    socket.emit( 'detections', {
-        data: em
-    })
+    socket.emit("detections", {
+      data: em,
+    });
   }, 500);
 });
