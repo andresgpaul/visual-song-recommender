@@ -1,16 +1,16 @@
 const video = document.getElementById("video");
 
-// var socket = io.connect();
-var socket = io.connect(
-  //   "wss://visual-song-recommender.herokuapp.com/socket.io/?EIO=4&transport=websocket",
-  {
-    secure: true,
-    transports: ["flashsocket", "polling", "websocket"],
-  }
-);
-socket.on("connect", function () {
-  console.log("SOCKET CONNECTED");
-});
+// // var socket = io.connect();
+// var socket = io.connect(
+//   //   "wss://visual-song-recommender.herokuapp.com/socket.io/?EIO=4&transport=websocket",
+//   {
+//     secure: true,
+//     transports: ["flashsocket", "polling", "websocket"],
+//   }
+// );
+// socket.on("connect", function () {
+//   console.log("SOCKET CONNECTED");
+// });
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri("../static/models/"),
@@ -66,8 +66,17 @@ var sent = 0;
 function sendEmotion() {
   video.pause();
   console.log("clicked successfully");
-  socket.emit("detections", {
-    data: em,
+  // socket.emit("detections", {
+  //   data: em,
+  // });
+  $.ajax({
+    url: "/detections",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(em),
+    success: function(resp) {
+      console.log("sent emotion", resp);
+    }
   });
   sent = 1;
 }

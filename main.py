@@ -1,6 +1,6 @@
 from flask import Flask, json, render_template, request, jsonify
 ###
-from flask_socketio import SocketIO, emit
+# from flask_socketio import SocketIO, emit
 
 import os
 # import sys
@@ -17,7 +17,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 app = Flask(__name__)
 
 ###
-socketio = SocketIO(app, cors_allowed_origins='*')
+# socketio = SocketIO(app, cors_allowed_origins='*')
 
 app.secret_key = 'R4roMax1FutSk8Ba'
 
@@ -272,15 +272,19 @@ def home():
     return render_template('inside.html')
 
 ###
-@socketio.on('connect')
-def test_connect():
-    print("SOCKET CONNECTED")
+# @socketio.on('connect')
+# def test_connect():
+#     print("SOCKET CONNECTED")
 
 
-@socketio.on('detections')
-def handle_face_em(json, methods=['GET', 'POST']):
+# @socketio.on('detections')
+# def handle_face_em(json, methods=['GET', 'POST']):
+@app.route('/detections', methods=['GET', 'POST'])
+def handle_face_em():
     global emDetected 
-    emDetected = json['data']
+    emDetected = request.get_json()
+    print(emDetected)
+    return jsonify({'success': 'success'})
 
 
 @app.after_request
@@ -293,5 +297,5 @@ def after_request(response):
 
 
 if __name__ == '__main__':
-    # app.run()
-    socketio.run(app)
+    app.run()
+    # socketio.run(app)
