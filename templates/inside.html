@@ -31,46 +31,57 @@
       emotions and song descriptions provided by Spotify streaming service.
     </p>
     <br />
-    <div class="box">
-      <video
-        id="video"
-        style="height: 410px"
-        width="720"
-        height="560"
-        autoplay
-        muted
-      ></video>
-      <button id="save-exp" onclick="sendEmotion()">Save Expression</button>
-      <button id="reset" onclick="reset()">Reset Video</button>
-      <p id="exp"></p>
-      <button id="get-songs" onclick="getSongs()">Get songs</button>
+    <div class="container">
+      <div class="loads">
+        <div class="vidLoad"></div>
+        <p id="vidL">Video loading...</p>
+        <div class="emLoad"></div>
+        <p id="emL">Emotion loading...</p>
+        <div class="spLoad"></div>
+        <p id="spL">Spotify loading...</p>
+        <button id="spotLoad" onclick="spotLo()">Load Spotify</button>
+      </div>
+      <div class="box">
+        <video
+          id="video"
+          style="height: 410px"
+          width="720"
+          height="560"
+          autoplay
+          muted
+        ></video>
+        <button id="save-exp" onclick="sendEmotion()">Save Expression</button>
+        <button id="reset" onclick="reset()">Reset Video</button>
+        <p id="exp"></p>
+        <button id="get-songs" onclick="getSongs()">Get songs</button>
 
-      <!-- <p style="max-width: 500px;">
-        Upload an image of your face (cropped as much as possible, removing
-        background) with an expression to get a song recommendation
-      </p>
-      <input
-        id="imageinput"
-        type="file"
-        name="image"
-        onchange="readUrl(this)"
-      />
-      <br />
-      <img id="imagebox" src="" width="500" />
-      <label
-        name="send"
-        id="sendbutton"
-        for="file"
-        style="width: 100px; cursor: pointer; border: outset; margin-top: 10px"
-      >
-        Upload Image
-      </label>
-      <div id="fresh">
-        <p id="s-msg" style="margin-bottom: 0"></p>
-      </div> -->
-      <br />
-      <p>Here are your recommended songs:</p>
-      <div id="url" style="max-width: 720px;"></div>
+        <!-- <p style="max-width: 500px;">
+          Upload an image of your face (cropped as much as possible, removing
+          background) with an expression to get a song recommendation
+        </p>
+        <input
+          id="imageinput"
+          type="file"
+          name="image"
+          onchange="readUrl(this)"
+        />
+        <br />
+        <img id="imagebox" src="" width="500" />
+        <label
+          name="send"
+          id="sendbutton"
+          for="file"
+          style="width: 100px; cursor: pointer; border: outset; margin-top: 10px"
+        >
+          Upload Image
+        </label>
+        <div id="fresh">
+          <p id="s-msg" style="margin-bottom: 0"></p>
+        </div> -->
+        <br />
+        <p>Here are your recommended songs:</p>
+        <div id="url" style="max-width: 720px;"></div>
+      </div>
     </div>
   </body>
 </html>

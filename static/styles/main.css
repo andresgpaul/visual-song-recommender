@@ -5,8 +5,37 @@ h1 {
   margin-left: 10vw;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 150px 720px;
+  justify-content: center;
+  grid-gap: 20px;
+}
+
+.loads {
+  text-align: -webkit-right;
+}
+
 .box {
   display: grid;
   justify-content: center;
   margin-bottom: 120px;
+}
+
+.vidLoad {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+}
+
+.emLoad {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+}
+
+.spLoad {
+  width: 10px;
+  height: 10px;
+  background-color: red;
 }

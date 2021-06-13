@@ -83,19 +83,19 @@ def get_recommended_songs(recm):
 
 
 def spotifyRec():
-    cid = '413809fc6a6a4d4aadff06f7a9176b94'
-    secret = '58ac47fad3784cf193becfd7b99bcc9a'
-    client_credentials_manager = SpotifyClientCredentials(
-        client_id=cid, client_secret=secret)
-    sp = spotipy.Spotify(
-        client_credentials_manager=client_credentials_manager, requests_timeout=10000)
+    # cid = '413809fc6a6a4d4aadff06f7a9176b94'
+    # secret = '58ac47fad3784cf193becfd7b99bcc9a'
+    # client_credentials_manager = SpotifyClientCredentials(
+    #     client_id=cid, client_secret=secret)
+    # sp = spotipy.Spotify(
+    #     client_credentials_manager=client_credentials_manager, requests_timeout=150)
+    global sp
 
     # emotion = detectEmotion()
     global emDetected
     emotion = emDetected
     # print(emotion)
     print("spotipy running")
-
 
     if (emotion == "Angry" or emotion == "angry"):
         print("agh")
@@ -218,6 +218,7 @@ def spotifyRec():
                                   target_valence=t_valence
                                   )
         print("ed")
+
     print("algo pasó")
     a, s, u = get_recommended_songs(recm)
     out_dict = {"artist": a, "song": s, "url": u}
@@ -248,6 +249,22 @@ def spotifyRec():
 #     emDetected = emotion
 
 #     return jsonify('emotion', emotion)
+resp = 0
+sp = ''
+
+@app.route('/spotLo', methods=['GET', 'POST'])
+def spotLo():
+    print("spotify loading")
+    global sp
+    global resp
+    cid = '413809fc6a6a4d4aadff06f7a9176b94'
+    secret = '58ac47fad3784cf193becfd7b99bcc9a'
+    client_credentials_manager = SpotifyClientCredentials(
+        client_id=cid, client_secret=secret)
+    sp = spotipy.Spotify(
+        client_credentials_manager=client_credentials_manager, requests_timeout=200)
+    resp = 1
+    return jsonify({'response': resp})
 
 
 @app.route('/')
