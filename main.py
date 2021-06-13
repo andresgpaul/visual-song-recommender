@@ -28,7 +28,7 @@ def emotion():
     global emDetected
     # emotion = detectEmotion()
     emotion = emDetected
-    print("backend running")
+    # print("backend running")
     out = spotifyRec()
     return jsonify({'response': out, 'emotion': emotion})
 
@@ -61,7 +61,7 @@ def emotion():
 
 
 def get_recommended_songs(recm):
-    print("songs recommending")
+    # print("songs recommending")
     tracks = recm.get('tracks')
     size = len(tracks)
 
@@ -77,7 +77,7 @@ def get_recommended_songs(recm):
         links.append(tracks[i].get('external_urls'))
         urls.append(links[i].get('spotify'))
         # print(artist_names[i], '-', song_names[i] + ':', urls[i])
-    print("songs have been searched")
+    # print("songs have been searched")
 
     return artist_names, song_names, urls
 
@@ -95,10 +95,10 @@ def spotifyRec():
     global emDetected
     emotion = emDetected
     # print(emotion)
-    print("spotipy running")
+    # print("spotipy running")
 
     if (emotion == "Angry" or emotion == "angry"):
-        print("agh")
+        # print("agh")
         t_danceability = 0.3
         t_energy = 0.8
         t_mode = 0
@@ -107,7 +107,7 @@ def spotifyRec():
         genres = ["black-metal", "death-metal", "dubstep", "electronic", "emo", "garage", "goth",
                   "hard-rock", "hard-core", "heavy-metal", "metal", "pop", "psych-rock", "punk", "punk-rock"]
     elif (emotion == "Disgust" or emotion == "disgusted"):
-        print("eww")
+        # print("eww")
         t_energy = 0.8
         t_mode = np.random.choice([0, 1])
         if (t_mode == 1):
@@ -118,7 +118,7 @@ def spotifyRec():
         genres = ["dance", "electronic",
                   "psych-rock", "r-n-b", "rock",  "soul"]
     elif (emotion == "Fear" or emotion == "fearful"):
-        print("ahh")
+        # print("ahh")
         t_energy = 0.65
         t_mode = 0
         t_speechiness = 0.05
@@ -128,7 +128,7 @@ def spotifyRec():
         genres = ["alternative", "black-metal", "classical",
                   "death-metal", "goth", "hip-hop", "psych-rock", "rock"]
     elif (emotion == "Happy" or emotion == "happy"):
-        print("yay")
+        # print("yay")
         t_danceability = 0.6
         t_energy = 0.8
         t_mode = 1
@@ -137,7 +137,7 @@ def spotifyRec():
         genres = ["bossanova", "country", "dance", "disco", "edm", "gospel", "groove", "happy", "hip-hop", "indie",
                   "j-pop", "k-pop", "reggae", "reggaeton", "road-trip", "party", "pop", "rock", "rock-n-roll", "summer"]
     elif (emotion == "Neutral" or emotion == "neutral"):
-        print("ok")
+        # print("ok")
         t_energy = 0.5
         t_mode = np.random.choice([0, 1])
         t_valence = 0.5
@@ -145,7 +145,7 @@ def spotifyRec():
         genres = ["acoustic", "alternative", "chill",
                   "classical", "indie", "jazz", "piano", "study"]
     elif (emotion == "Sad" or emotion == "sad"):
-        print(":(")
+        # print(":(")
         t_energy = 0.25
         t_mode = 0
         t_acousticness = 0.6
@@ -153,7 +153,7 @@ def spotifyRec():
         t_tempo = 70
         genres = ["blues", "emo", "jazz", "piano", "pop", "rainy-day", "sad"]
     elif (emotion == "Surprise" or emotion == "surprised"):
-        print("ohh")
+        # print("ohh")
         t_energy = 0.85
         t_mode = 1
         t_valence = 0.65
@@ -164,7 +164,7 @@ def spotifyRec():
     selGenre = np.random.choice(genres, 5).tolist()
 
     if (emotion == "Angry" or emotion == "angry"):
-        print("aghing")
+        # print("aghing")
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_danceability=t_danceability,
@@ -173,9 +173,9 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-        print("aghed")
+        # print("aghed")
     elif (emotion == "Fear" or emotion == "fearful"):
-        print("ahhing")
+        # print("ahhing")
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_energy=t_energy,
@@ -185,9 +185,9 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-        print("ahhed")
+        # print("ahhed")
     elif (emotion == "Happy" or emotion == "happy"):
-        print("yaying")
+        # print("yaying")
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_danceability=t_danceability,
@@ -196,9 +196,9 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-        print("yayed")
+        # print("yayed")
     elif (emotion == "Sad" or emotion == "sad"):
-        print(":(ing")
+        # print(":(ing")
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_energy=t_energy,
@@ -207,9 +207,9 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-        print(":(ed")
+        # print(":(ed")
     else:
-        print("ing")
+        # print("ing")
         recm = sp.recommendations(seed_genres=selGenre,
                                   limit=5,
                                   target_energy=t_energy,
@@ -217,12 +217,12 @@ def spotifyRec():
                                   target_tempo=t_tempo,
                                   target_valence=t_valence
                                   )
-        print("ed")
+        # print("ed")
 
-    print("algo pasó")
+    # print("algo pasó")
     a, s, u = get_recommended_songs(recm)
     out_dict = {"artist": a, "song": s, "url": u}
-    print("going back to front (disque)")
+    # print("going back to front (disque)")
     return out_dict
 
 

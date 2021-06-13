@@ -61,7 +61,7 @@ video.addEventListener("play", () => {
   }, 500);
 });
 
-var sent = 0
+var sent = 0;
 
 function sendEmotion() {
   video.pause();
@@ -79,6 +79,7 @@ function reset() {
 
 var spB = $(".spLoad");
 var spL = document.getElementById("spL");
+var s = 0;
 
 function spotLo() {
   $.ajax({
@@ -94,7 +95,7 @@ function spotLo() {
       console.log("spot got clicked");
     },
   }).done(function (data) {
-    var s = Object.values(data);
+    s = Object.values(data);
     console.log(s);
     if (s == 1) {
       spB.css("backgroundColor", "green");
@@ -103,30 +104,33 @@ function spotLo() {
   });
 }
 
-
 function getSongs() {
-  if (sent == 0) {
-    alert("Save an expression first");
+  if (s == 0) {
+    alert("Load Spotify");
   } else {
-    $.ajax({
-      // url: "http://localhost:5000/emotion",
-      url: "/emotion",
-      type: "GET",
-      contentType: "application/json",
-      error: function (data) {
-        console.log("upload error", data);
-        console.log(data.getAllResponseHeaders());
-      },
-      success: function (data) {
-        console.log("get clicked");
-      },
-    }).done(function (data) {
-      var pred = Object.values(data);
-      console.log(pred);
-      var recs = pred[1];
-  
-      printSongs(recs);
-    });
+    if (sent == 0) {
+      alert("Save an expression first");
+    } else {
+      $.ajax({
+        // url: "http://localhost:5000/emotion",
+        url: "/emotion",
+        type: "GET",
+        contentType: "application/json",
+        error: function (data) {
+          console.log("upload error", data);
+          console.log(data.getAllResponseHeaders());
+        },
+        success: function (data) {
+          console.log("get clicked");
+        },
+      }).done(function (data) {
+        var pred = Object.values(data);
+        console.log(pred);
+        var recs = pred[1];
+
+        printSongs(recs);
+      });
+    }
   }
 }
 
