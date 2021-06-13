@@ -79,6 +79,8 @@ function reset() {
 
 var spB = $(".spLoad");
 var spL = document.getElementById("spL");
+var s = 0;
+var header;
 
 function spotLo() {
   $.ajax({
@@ -94,9 +96,10 @@ function spotLo() {
       console.log("spot got clicked");
     },
   }).done(function (data) {
-    var s = Object.values(data);
-    console.log(s);
-    if (s == 1) {
+    s = Object.values(data);
+    header = s[0];
+    console.log('s variable', s);
+    if (s[1] == 1) {
       spB.css("backgroundColor", "green");
       spL.innerHTML = "Spotify Loaded!";
     }
@@ -105,28 +108,50 @@ function spotLo() {
 
 
 function getSongs() {
-  if (sent == 0) {
-    alert("Save an expression first");
+  if (s == 0) {
+    alert("Load Spotify");
   } else {
-    $.ajax({
-      // url: "http://localhost:5000/emotion",
-      url: "/emotion",
-      type: "GET",
-      contentType: "application/json",
-      error: function (data) {
-        console.log("upload error", data);
-        console.log(data.getAllResponseHeaders());
-      },
-      success: function (data) {
-        console.log("get clicked");
-      },
-    }).done(function (data) {
-      var pred = Object.values(data);
-      console.log(pred);
-      var recs = pred[1];
-  
-      printSongs(recs);
-    });
+    if (sent == 0) {
+      alert("Save an expression first");
+    } else {
+      $.ajax({
+        // url: "http://localhost:5000/emotion",
+        url: "/emotion",
+        type: "GET",
+        contentType: "application/json",
+        error: function (data) {
+          console.log("upload error", data);
+          console.log(data.getAllResponseHeaders());
+        },
+        success: function (data) {
+          console.log("get clicked");
+        },
+      }).done(function (data) {
+        var pred = Object.values(data);
+        console.log(pred);
+        var recs = pred[1];
+    
+        printSongs(recs);
+      });
+
+
+      // genress = ['classical', 'rock', 'pop'];
+
+      // $.ajax({
+      //   url: `https://api.spotify.com/v1/recommendations?seed_genres=${genress[0]}%2C%20${genress[1]}%2C%20${genress[2]}`, //?limit=1&seed_genres=classical%2C%20country%2C%20rock&target_acousticness=0.5",
+      //   headers: header,
+      //   data: {
+      //     limit: 1,
+      //     target_acousticness: 0.5
+      //   },
+      //   success: function(data) {
+      //     console.log(data);
+      //   },
+      //   error: function(data) {
+      //     console.log("error", data);
+      //   }
+      // });
+    }
   }
 }
 

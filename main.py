@@ -13,6 +13,9 @@ import numpy as np
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
+from spotify_client import *
+from urllib.parse import urlencode
+
 
 app = Flask(__name__)
 
@@ -28,9 +31,11 @@ def emotion():
     global emDetected
     # emotion = detectEmotion()
     emotion = emDetected
-    print("backend running")
+    # print(emotion)
+    # print("backend running")
     out = spotifyRec()
     return jsonify({'response': out, 'emotion': emotion})
+    # return jsonify({'test': test})
 
 # def detectEmotion(img, gray):
 #     # img = cv2.imread('static/images/test1.jpeg', 0)
@@ -61,7 +66,7 @@ def emotion():
 
 
 def get_recommended_songs(recm):
-    print("songs recommending")
+    # print("songs recommending")
     tracks = recm.get('tracks')
     size = len(tracks)
 
@@ -77,7 +82,7 @@ def get_recommended_songs(recm):
         links.append(tracks[i].get('external_urls'))
         urls.append(links[i].get('spotify'))
         # print(artist_names[i], '-', song_names[i] + ':', urls[i])
-    print("songs have been searched")
+    # print("songs have been searched")
 
     return artist_names, song_names, urls
 
@@ -95,7 +100,7 @@ def spotifyRec():
     global emDetected
     emotion = emDetected
     # print(emotion)
-    print("spotipy running")
+    # print("spotipy running")
 
     if (emotion == "Angry" or emotion == "angry"):
         print("agh")
@@ -163,66 +168,72 @@ def spotifyRec():
 
     selGenre = np.random.choice(genres, 5).tolist()
 
-    if (emotion == "Angry" or emotion == "angry"):
-        print("aghing")
-        recm = sp.recommendations(seed_genres=selGenre,
-                                  limit=5,
-                                  target_danceability=t_danceability,
-                                  target_energy=t_energy,
-                                  target_mode=t_mode,
-                                  target_tempo=t_tempo,
-                                  target_valence=t_valence
-                                  )
-        print("aghed")
-    elif (emotion == "Fear" or emotion == "fearful"):
-        print("ahhing")
-        recm = sp.recommendations(seed_genres=selGenre,
-                                  limit=5,
-                                  target_energy=t_energy,
-                                  target_mode=t_mode,
-                                  target_spechiness=t_speechiness,
-                                  target_instrumentalness=t_instrumentalness,
-                                  target_tempo=t_tempo,
-                                  target_valence=t_valence
-                                  )
-        print("ahhed")
-    elif (emotion == "Happy" or emotion == "happy"):
-        print("yaying")
-        recm = sp.recommendations(seed_genres=selGenre,
-                                  limit=5,
-                                  target_danceability=t_danceability,
-                                  target_energy=t_energy,
-                                  target_mode=t_mode,
-                                  target_tempo=t_tempo,
-                                  target_valence=t_valence
-                                  )
-        print("yayed")
-    elif (emotion == "Sad" or emotion == "sad"):
-        print(":(ing")
-        recm = sp.recommendations(seed_genres=selGenre,
-                                  limit=5,
-                                  target_energy=t_energy,
-                                  target_mode=t_mode,
-                                  target_acousticness=t_acousticness,
-                                  target_tempo=t_tempo,
-                                  target_valence=t_valence
-                                  )
-        print(":(ed")
-    else:
-        print("ing")
-        recm = sp.recommendations(seed_genres=selGenre,
-                                  limit=5,
-                                  target_energy=t_energy,
-                                  target_mode=t_mode,
-                                  target_tempo=t_tempo,
-                                  target_valence=t_valence
-                                  )
-        print("ed")
+    selGenreUrl = "%2C%20".join(selGenre)
 
-    print("algo pasó")
-    a, s, u = get_recommended_songs(recm)
+    # if (emotion == "Angry" or emotion == "angry"):
+    #     print("aghing")
+        # recm = sp.recommendations(seed_genres=selGenre,
+        #                           limit=5,
+        #                           target_danceability=t_danceability,
+        #                           target_energy=t_energy,
+        #                           target_mode=t_mode,
+        #                           target_tempo=t_tempo,
+        #                           target_valence=t_valence
+        #                           )
+        # print("aghed")
+    # elif (emotion == "Fear" or emotion == "fearful"):
+    #     print("ahhing")
+        # recm = sp.recommendations(seed_genres=selGenre,
+        #                           limit=5,
+        #                           target_energy=t_energy,
+        #                           target_mode=t_mode,
+        #                           target_spechiness=t_speechiness,
+        #                           target_instrumentalness=t_instrumentalness,
+        #                           target_tempo=t_tempo,
+        #                           target_valence=t_valence
+        #                           )
+        # print("ahhed")
+    # elif (emotion == "Happy" or emotion == "happy"):
+    #     print("yaying")
+        # recm = sp.recommendations(seed_genres=selGenre,
+        #                           limit=5,
+        #                           target_danceability=t_danceability,
+        #                           target_energy=t_energy,
+        #                           target_mode=t_mode,
+        #                           target_tempo=t_tempo,
+        #                           target_valence=t_valence
+        #                           )
+        # print("yayed")
+    # elif (emotion == "Sad" or emotion == "sad"):
+    #     print(":(ing")
+        # recm = sp.recommendations(seed_genres=selGenre,
+        #                           limit=5,
+        #                           target_energy=t_energy,
+        #                           target_mode=t_mode,
+        #                           target_acousticness=t_acousticness,
+        #                           target_tempo=t_tempo,
+        #                           target_valence=t_valence
+        #                           )
+        # print(":(ed")
+    # else:
+    #     print("ing")
+        # recm = sp.recommendations(seed_genres=selGenre,
+        #                           limit=5,
+        #                           target_energy=t_energy,
+        #                           target_mode=t_mode,
+        #                           target_tempo=t_tempo,
+        #                           target_valence=t_valence
+        #                           )
+        # print("ed")
+    
+    global spotify
+    test = spotify.get_recommendations(selGenreUrl, t_energy, t_mode, t_tempo, t_valence)
+    # print(test)
+
+    # print("algo pasó")
+    a, s, u = get_recommended_songs(test)
     out_dict = {"artist": a, "song": s, "url": u}
-    print("going back to front (disque)")
+    # print("going back to front (disque)")
     return out_dict
 
 
@@ -251,20 +262,26 @@ def spotifyRec():
 #     return jsonify('emotion', emotion)
 resp = 0
 sp = ''
+spotify = ''
 
 @app.route('/spotLo', methods=['GET', 'POST'])
 def spotLo():
-    print("spotify loading")
-    global sp
+    # print("spotify loading")
+    # global sp
     global resp
     cid = '413809fc6a6a4d4aadff06f7a9176b94'
     secret = '58ac47fad3784cf193becfd7b99bcc9a'
-    client_credentials_manager = SpotifyClientCredentials(
-        client_id=cid, client_secret=secret)
-    sp = spotipy.Spotify(
-        client_credentials_manager=client_credentials_manager, requests_timeout=200)
+    # client_credentials_manager = SpotifyClientCredentials(
+    #     client_id=cid, client_secret=secret)
+    # sp = spotipy.Spotify(
+    #     client_credentials_manager=client_credentials_manager, requests_timeout=200)
     resp = 1
-    return jsonify({'response': resp})
+    global spotify
+    spotify = SpotifyAPI(cid, secret)
+    header = spotify.get_resource_header()
+    print(header)
+
+    return jsonify({'response': resp, 'header': header})
 
 
 @app.route('/')
@@ -281,6 +298,7 @@ def test_connect():
 def handle_face_em(json, methods=['GET', 'POST']):
     global emDetected 
     emDetected = json['data']
+    print(emDetected)
 
 
 @app.after_request
