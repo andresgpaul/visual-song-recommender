@@ -31,6 +31,20 @@
       emotions and song descriptions provided by Spotify streaming service.
     </p>
     <br />
+    <div class="steps">
+      <p class="inst">Instructions:</p>
+      <ol class="st">
+        <li>Give access to your camera</li>
+        <li>Wait until the first light from the left turns green (the camera will start streaming).</li>
+        <li>Wait until the second light from the left turns green (an emotion will appear below the video).</li>
+        <li>Click on 'Load Spotify' and wait until the ligth turns green (if it takes some time, click again).</li>
+        <li>Make an expression and click on 'Save Expression' while doing the expression (the video will freeze).</li>
+        <li>Click on 'Get Songs' to obtain recommendations (if nothing happened click again).</li>
+        <li>If you want different songs, click again on 'Get Songs'.</li>
+        <li>Click on 'Reset Video' to make a new expression and follow steps 5 and 6.</li>
+      </ol>
+    </div>
+    <br />
     <div class="container">
       <div class="loads">
         <div class="vidLoad"></div>
@@ -50,11 +64,18 @@
           autoplay
           muted
         ></video>
-        <button id="save-exp" onclick="sendEmotion()">Save Expression</button>
-        <button id="reset" onclick="reset()">Reset Video</button>
-        <p id="exp"></p>
-        <button id="get-songs" onclick="getSongs()">Get songs</button>
-
+        <br />
+        <div class="buts">
+          <button id="save-exp" onclick="sendEmotion()" style="height: 30px;">Save Expression</button>
+          <button id="reset" onclick="reset()" style="height: 30px;">Reset Video</button>
+        </div>
+        <br />
+        <div style="display: grid; grid-template-columns: 150px 420px;">
+          <p>Emotion predicted: </p>
+          <p id="exp"></p>
+        </div>
+        <br/>
+        <button id="get-songs" onclick="getSongs()" style="height: 30px;">Get Songs</button>
         <!-- <p style="max-width: 500px;">
           Upload an image of your face (cropped as much as possible, removing
           background) with an expression to get a song recommendation
@@ -78,7 +99,7 @@
         <div id="fresh">
           <p id="s-msg" style="margin-bottom: 0"></p>
         </div> -->
-        <br />
+        <!-- <br /> -->
         <p>Here are your recommended songs:</p>
         <div id="url" style="max-width: 720px;"></div>
       </div>

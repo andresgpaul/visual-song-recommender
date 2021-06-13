@@ -12,6 +12,22 @@ h1 {
   grid-gap: 20px;
 }
 
+.steps {
+  text-align: center;
+}
+.inst {
+  font-weight: 600;
+  font-size: large;
+  margin: 0;
+}
+.st {
+  font-size: large;
+  font-weight: 400;
+  text-align: left;
+  display: inline-block;
+  margin: 0;
+}
+
 .loads {
   text-align: -webkit-right;
 }
@@ -38,4 +54,16 @@ h1 {
   width: 10px;
   height: 10px;
   background-color: red;
+}
+
+.buts {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  justify-content: center;
+  grid-gap: 50px;
+}
+
+#exp {
+  text-align: center;
+  font-size: x-large;
 }
