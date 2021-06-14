@@ -1,17 +1,5 @@
 const video = document.getElementById("video");
 
-// // var socket = io.connect();
-// var socket = io.connect(
-//   //   "wss://visual-song-recommender.herokuapp.com/socket.io/?EIO=4&transport=websocket",
-//   {
-//     secure: true,
-//     transports: ["flashsocket", "polling", "websocket"],
-//   }
-// );
-// socket.on("connect", function () {
-//   console.log("SOCKET CONNECTED");
-// });
-
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri("../static/models/"),
   faceapi.nets.faceLandmark68Net.loadFromUri("../static/models/"),
@@ -20,17 +8,22 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
-  navigator.getUserMedia(
-    { video: {} },
-    (stream) => (video.srcObject = stream),
-    (err) => console.error(err)
-  );
+  navigator.mediaDevices
+    .getUserMedia({ video: {} })
+    .then(function (mediaStream) {
+      video.srcObject = mediaStream;
+    })
+    .catch(function (err) {
+      console.log(err.name + ": " + err.message);
+    });
 }
 
 var vidB = $(".vidLoad");
 var vidL = document.getElementById("vidL");
+var vidReady = 0;
 var emB = $(".emLoad");
 var emL = document.getElementById("emL");
+var emReady = 0;
 
 var expM = document.getElementById("exp");
 
@@ -40,6 +33,7 @@ video.addEventListener("play", () => {
   console.log("video started");
   vidB.css("backgroundColor", "green");
   vidL.innerHTML = "Video loaded!";
+  vidReady = 1;
   const canvas = faceapi.createCanvasFromMedia(video);
   document.body.append(canvas);
   const displaySize = { width: video.width, height: video.height };
@@ -51,39 +45,39 @@ video.addEventListener("play", () => {
       .withFaceExpressions();
     var exps = detections[0].expressions;
     em = Object.keys(exps).reduce((a, b) => (exps[a] > exps[b] ? a : b));
-    // console.log(em);
     expM.innerHTML = em;
     emB.css("backgroundColor", "green");
     emL.innerHTML = "Emotion loaded!";
-    // socket.emit("detections", {
-    //   data: em,
-    // });
+    emReady = 1;
   }, 500);
 });
 
 var sent = 0;
 
 function sendEmotion() {
-  video.pause();
-  console.log("clicked successfully");
-  // socket.emit("detections", {
-  //   data: em,
-  // });
-  $.ajax({
-    url: "/detections",
-    type: "POST",
-    contentType: "application/json",
-    data: JSON.stringify(em),
-    success: function(resp) {
-      console.log("sent emotion", resp);
-    }
-  });
-  sent = 1;
+  if (emReady == 1 && vidReady == 1) {
+    video.pause();
+    console.log("clicked successfully");
+    $.ajax({
+      url: "/detections",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(em),
+      success: function (resp) {
+        console.log("sent emotion", resp);
+      },
+    });
+    sent = 1;
+  } else {
+    alert("Wait for video and emotion to load");
+  }
 }
 
 function reset() {
-  video.play();
-  sent = 0;
+  if (vidReady == 1) {
+    video.play();
+    sent = 0;
+  }
 }
 
 var spB = $(".spLoad");
@@ -92,7 +86,6 @@ var s = 0;
 
 function spotLo() {
   $.ajax({
-    // url: "http://localhost:5000/emotion",
     url: "/spotLo",
     type: "GET",
     contentType: "application/json",
@@ -105,7 +98,6 @@ function spotLo() {
     },
   }).done(function (data) {
     s = Object.values(data);
-    console.log(s);
     if (s == 1) {
       spB.css("backgroundColor", "green");
       spL.innerHTML = "Spotify Loaded!";
@@ -121,7 +113,6 @@ function getSongs() {
       alert("Save an expression first");
     } else {
       $.ajax({
-        // url: "http://localhost:5000/emotion",
         url: "/emotion",
         type: "GET",
         contentType: "application/json",
@@ -165,8 +156,4 @@ function printSongs(recs) {
     p.appendChild(a);
     target.appendChild(p);
   }
-
-  // $("body,html").animate({ scrollTop: $('#exp').offset().top }, 1200);
-
-  // window.open(urls[0]);
 }
