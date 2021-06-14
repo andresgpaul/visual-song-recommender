@@ -29,7 +29,7 @@ var expM = document.getElementById("exp");
 
 var em;
 
-video.addEventListener("play", () => {
+video.addEventListener("playing", () => {
   console.log("video started");
   vidB.css("backgroundColor", "green");
   vidL.innerHTML = "Video loaded!";
