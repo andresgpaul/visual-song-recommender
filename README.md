@@ -1,6 +1,9 @@
 # Automatic song selection through facial emotion recognition
 The relationship between sound and images have been explored since the advent of movies, and even earlier. This project is able to automatically select a song given an image through facial emotion recognition. Given a previously unseen image and given the sentiment label assigned by the network, the software will select a proper song through the Spotify API by mean of a mapping between sentiments and song descriptions provided by Spotify streaming service.
 
+A working solution of the presented program can be found at:
+https://visual-song-recommender.herokuapp.com/
+
 ## Requirements
 - Python 3
 - Face-api (includes tensorflow)
@@ -31,9 +34,6 @@ The repository is structured as follows.
     - rt_face.js:
 
         Inside this file is the main frontend process where video streaming is done to detect facial emotions and communication with the backend. Here are all the functions done in the frontend such as buttons and backend communication. 
-    - index.js:
-
-        Another file doing frontend process of showing the uploaded image and other functions when an upload is done.
     - 'styles' folder:
         - main.css:
 
