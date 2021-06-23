@@ -1,5 +1,6 @@
 const video = document.getElementById("video");
 
+// Loading models for the different face-api networks.
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri("../static/models/"),
   faceapi.nets.faceLandmark68Net.loadFromUri("../static/models/"),
@@ -7,6 +8,8 @@ Promise.all([
   faceapi.nets.faceExpressionNet.loadFromUri("../static/models/"),
 ]).then(startVideo);
 
+// Function to start video streaming from user's device
+// (called when face-api models are loaded).
 function startVideo() {
   navigator.mediaDevices
     .getUserMedia({ video: {} })
@@ -18,6 +21,7 @@ function startVideo() {
     });
 }
 
+// Global variables initialized, used to change html elements.
 var vidB = $(".vidLoad");
 var vidL = document.getElementById("vidL");
 var vidReady = 0;
@@ -29,6 +33,12 @@ var expM = document.getElementById("exp");
 
 var em;
 
+// Video event listener with functions to do when playing.
+// Flag "vidReady" used to know if video is running.
+// The interval uses the faceapi models to detect emotions
+// from the video stream.
+// We save the emotion with highest probability into "em" and print it in HTML.
+// Flag "emReady" used to know if emotion detection is working.
 video.addEventListener("playing", () => {
   console.log("video started");
   vidB.css("backgroundColor", "green");
@@ -54,6 +64,10 @@ video.addEventListener("playing", () => {
 
 var sent = 0;
 
+// This function sends a POST request to the backend function "detections"
+// and provides the emotion detected. 
+// Flag "sent" used to know if emotion has been sent to backend.
+// Function called when pressed "Save Expression" button.
 function sendEmotion() {
   if (emReady == 1 && vidReady == 1) {
     video.pause();
@@ -73,6 +87,10 @@ function sendEmotion() {
   }
 }
 
+// This function starts playing again the video, since it is paused when
+// "Save expression" is clicked.
+// Resets flag "sent" to be able to give a new one.
+// Function called when "Reset Video" button is pressed.
 function reset() {
   if (vidReady == 1) {
     video.play();
@@ -80,10 +98,14 @@ function reset() {
   }
 }
 
+// Initialization of global variables.
 var spB = $(".spLoad");
 var spL = document.getElementById("spL");
 var s = 0;
 
+// This function calls the backend function "spotLo" with a GET request.
+// If response is equal to 1, it updates some HTML content.
+// Function called when "Load Spotify" button is pressed.
 function spotLo() {
   $.ajax({
     url: "/spotLo",
@@ -105,6 +127,8 @@ function spotLo() {
   });
 }
 
+// This function calls the backend function "emotion" if previous flags are on.
+// The response is the recommended songs with song name, artist name and url.
 function getSongs() {
   if (s == 0) {
     alert("Load Spotify");
@@ -134,6 +158,8 @@ function getSongs() {
   }
 }
 
+// With the received song parameters in the previous function,
+// this function creates HTML elements to show a list of the obtained songs.
 function printSongs(recs) {
   var artists = recs["artist"];
   var songs = recs["song"];
