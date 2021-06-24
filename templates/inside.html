@@ -12,29 +12,43 @@
     <script defer src="../static/rt_face.js"></script>
   </head>
   <body>
-    <h1>Automatic Spotify Song Selection through Facial Emotion Recognition</h1>
-    <p style="width: 80%; margin-left: 10vw">
-      The relationship between sound and images have been explored since the
-      advent of movies, and even earlier. The project work aims to create a
-      software able to automatically select a song given an image through facial
-      emotion recognition. A Neural Network is trained in order to perform
-      facial emotion recognition on images. Given a previously unseen image and
-      given the emotion label assigned by the network, the software will select
-      a proper song through the Spotify API by mean of a mapping between
-      emotions and song descriptions provided by Spotify streaming service.
-    </p>
-    <br />
     <div class="steps">
+      <h1>
+        Automatic Spotify Song Selection through Facial Emotion Recognition
+      </h1>
+      <p>
+        This program gives the user a selection of songs based on the expression
+        obtained from the user by using their camera's device.
+      </p>
+      <br />
       <p class="inst">Instructions:</p>
       <ol class="st">
         <li>Give access to your camera</li>
-        <li>Wait until the first light from the left turns green (the camera will start streaming).</li>
-        <li>Wait until the second light from the left turns green (an emotion will appear below the video).</li>
-        <li>Click on 'Load Spotify' and wait until the ligth turns green (if it takes some time, click again).</li>
-        <li>Make an expression and click on 'Save Expression' while doing the expression (the video will freeze).</li>
-        <li>Click on 'Get Songs' to obtain recommendations (if nothing happened click again).</li>
+        <li>
+          Wait until the first light from the left turns green (the camera will
+          start streaming).
+        </li>
+        <li>
+          Wait until the second light from the left turns green (an emotion will
+          appear below the video).
+        </li>
+        <li>
+          Click on 'Load Spotify' and wait until the ligth turns green (if it
+          takes some time, click again).
+        </li>
+        <li>
+          Make an expression and click on 'Save Expression' while doing the
+          expression (the video will freeze).
+        </li>
+        <li>
+          Click on 'Get Songs' to obtain recommendations (if nothing happened
+          click again).
+        </li>
         <li>If you want different songs, click again on 'Get Songs'.</li>
-        <li>Click on 'Reset Video' to make a new expression and follow steps 5 and 6.</li>
+        <li>
+          Click on 'Reset Video' to make a new expression and follow steps 5 and
+          6.
+        </li>
       </ol>
     </div>
     <br />
@@ -59,18 +73,24 @@
         ></video>
         <br />
         <div class="buts">
-          <button id="save-exp" onclick="sendEmotion()" style="height: 30px;">Save Expression</button>
-          <button id="reset" onclick="reset()" style="height: 30px;">Reset Video</button>
+          <button id="save-exp" onclick="sendEmotion()" style="height: 30px">
+            Save Expression
+          </button>
+          <button id="reset" onclick="reset()" style="height: 30px">
+            Reset Video
+          </button>
         </div>
         <br />
-        <div style="display: grid; grid-template-columns: 150px 420px;">
-          <p>Emotion predicted: </p>
+        <div style="display: grid; grid-template-columns: 150px 420px">
+          <p>Emotion predicted:</p>
           <p id="exp"></p>
         </div>
-        <br/>
-        <button id="get-songs" onclick="getSongs()" style="height: 30px;">Get Songs</button>
+        <br />
+        <button id="get-songs" onclick="getSongs()" style="height: 30px">
+          Get Songs
+        </button>
         <p>Here are your recommended songs:</p>
-        <div id="url" style="max-width: 720px;"></div>
+        <div id="url" style="max-width: 720px"></div>
       </div>
     </div>
   </body>
