@@ -1,36 +1,75 @@
+html {
+  background-color: #151515;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
 h1 {
   justify-content: center;
   display: grid;
   width: 80%;
   margin-left: 10vw;
+  color: #ffffffe0;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 150px 720px;
+  grid-template-columns: 450px 800px 450px;
   justify-content: center;
   grid-gap: 20px;
+  margin-top: 60px;
 }
 
 .steps {
   text-align: center;
+  margin-top: 60px;
 }
+
 .inst {
   font-weight: 600;
   font-size: large;
   margin: 0;
+  color: #ffffffe0;
 }
+
 .st {
-  font-size: large;
   font-weight: 400;
   text-align: left;
   display: inline-block;
   margin: 0;
+  color: #ffffffa0;
+  background-color: #202020;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
 }
 
 .loads {
   text-align: -webkit-right;
 }
+
+button {
+  border-radius: 15px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  background-color: #d0d0d0;
+  font-weight: bold;
+}
+
+#spotLoad {
+  margin-top: 10px;
+  width: 150px;
+  height: 30px;
+}
+
+/* #save-exp #reset #get-songs {
+  width: 150px;
+  height: 30px;
+} */
 
 .box {
   display: grid;
@@ -38,32 +77,88 @@ h1 {
   margin-bottom: 120px;
 }
 
+.statsC {
+  display: grid;
+  grid-template-columns: 15px 200px;
+  margin-bottom: 10px;
+}
+
 .vidLoad {
   width: 10px;
   height: 10px;
   background-color: red;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.statL {
+  color: #ffffffa0;
+  margin: 0;
+  margin-bottom: 5px
 }
 
 .emLoad {
   width: 10px;
   height: 10px;
   background-color: red;
+  border-radius: 50%;
+  margin-top: 5px;
 }
 
 .spLoad {
   width: 10px;
   height: 10px;
   background-color: red;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.emRes{
+  /* display: grid;
+  grid-template-columns: 150px 420px; */
+  color: #ffffffe0;
 }
 
 .buts {
   display: grid;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 150px 150px;
   justify-content: center;
   grid-gap: 50px;
+  margin-top: 5px;
 }
 
 #exp {
   text-align: center;
   font-size: x-large;
+  background-color: #202020;
+  height: 45px;
+  padding-top: 15px;
+  border-radius: 10px;
+}
+
+a:link {
+  color:inherit;
+}
+
+a:visited { 
+  text-decoration: none; 
+  color: #ffffffe0; 
+}
+
+a:hover {
+  color: #1db954;
+}
+
+.songsL {
+  max-width: 720px;
+  color: #ffffffa0;
+  background-color: #202020;
+  /* height: 270px; */
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+button:hover {
+  background-color: #1db954;
 }

@@ -41,7 +41,7 @@ var em;
 // Flag "emReady" used to know if emotion detection is working.
 video.addEventListener("playing", () => {
   console.log("video started");
-  vidB.css("backgroundColor", "green");
+  vidB.css("backgroundColor", "#1db954");
   vidL.innerHTML = "Video loaded!";
   vidReady = 1;
   const canvas = faceapi.createCanvasFromMedia(video);
@@ -56,7 +56,7 @@ video.addEventListener("playing", () => {
     var exps = detections[0].expressions;
     em = Object.keys(exps).reduce((a, b) => (exps[a] > exps[b] ? a : b));
     expM.innerHTML = em;
-    emB.css("backgroundColor", "green");
+    emB.css("backgroundColor", "#1db954");
     emL.innerHTML = "Emotion loaded!";
     emReady = 1;
   }, 500);
@@ -121,7 +121,7 @@ function spotLo() {
   }).done(function (data) {
     s = Object.values(data);
     if (s == 1) {
-      spB.css("backgroundColor", "green");
+      spB.css("backgroundColor", "#1db954");
       spL.innerHTML = "Spotify Loaded!";
     }
   });
@@ -173,11 +173,12 @@ function printSongs(recs) {
     var p = document.createElement("p");
     var b = document.createElement("br");
     var a = document.createElement("a");
-    p.innerHTML = songs[i] + " by " + artists[i] + ":\n";
+    // p.innerHTML = songs[i] + " by " + artists[i] + ":\n";
     a.setAttribute("href", urls[i]);
     a.setAttribute("target", "_blank");
     a.setAttribute("rel", "noopener noreferrer");
-    a.innerHTML = urls[i];
+    // a.innerHTML = urls[i];
+    a.innerHTML = songs[i] + " by " + artists[i];
     p.appendChild(b);
     p.appendChild(a);
     target.appendChild(p);

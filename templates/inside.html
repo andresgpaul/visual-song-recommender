@@ -3,6 +3,12 @@
   <head>
     <title>Visual Song Recommender</title>
     <link rel="stylesheet" type="text/css" href="../static/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -13,60 +19,69 @@
   </head>
   <body>
     <div class="steps">
-      <h1>
-        Automatic Spotify Song Selection through Facial Emotion Recognition
-      </h1>
-      <p>
+      <h1>Visual Song Recommender</h1>
+      <p style="color: #ffffffa0; margin-bottom: 0;">
         This program gives the user a selection of songs based on the expression
         obtained from the user by using their camera's device.
       </p>
-      <br />
-      <p class="inst">Instructions:</p>
-      <ol class="st">
-        <li>Give access to your camera</li>
-        <li>
-          Wait until the first light from the left turns green (the camera will
-          start streaming).
-        </li>
-        <li>
-          Wait until the second light from the left turns green (an emotion will
-          appear below the video).
-        </li>
-        <li>
-          Click on 'Load Spotify' and wait until the ligth turns green (if it
-          takes some time, click again).
-        </li>
-        <li>
-          Make an expression and click on 'Save Expression' while doing the
-          expression (the video will freeze).
-        </li>
-        <li>
-          Click on 'Get Songs' to obtain recommendations (if nothing happened
-          click again).
-        </li>
-        <li>If you want different songs, click again on 'Get Songs'.</li>
-        <li>
-          Click on 'Reset Video' to make a new expression and follow steps 5 and
-          6.
-        </li>
-      </ol>
     </div>
     <br />
     <div class="container">
-      <div class="loads">
-        <div class="vidLoad"></div>
-        <p id="vidL">Video loading...</p>
-        <div class="emLoad"></div>
-        <p id="emL">Emotion loading...</p>
-        <div class="spLoad"></div>
-        <p id="spL">Spotify loading...</p>
-        <button id="spotLoad" onclick="spotLo()">Load Spotify</button>
+      <div>
+        <div id="instructions">
+          <p class="inst">Instructions:</p>
+          <br />
+          <ol class="st">
+            <li>Give access to your camera</li>
+            <li>
+              Wait until the first light from the left turns green (the camera will
+              start streaming).
+            </li>
+            <li>
+              Wait until the second light from the left turns green (an emotion will
+              appear below the video).
+            </li>
+            <li>
+              Click on 'Load Spotify' and wait until the ligth turns green (if it
+              takes some time, click again).
+            </li>
+            <li>
+              Make an expression and click on 'Save Expression' while doing the
+              expression (the video will freeze).
+            </li>
+            <li>
+              Click on 'Get songs' to obtain recommendations (if nothing happened
+              click again).
+            </li>
+            <li>If you want different songs, click again on 'Get songs'.</li>
+            <li>
+              Click on 'Reset Video' to make a new expression and follow steps 5 and
+              6.
+            </li>
+          </ol>
+        </div>
+        <br />
+        <div class="loads" style="margin-top: 18.75px; padding-left: 25px;">
+          <div class="statsC">
+            <div class="vidLoad"></div>
+            <p id="vidL" class="statL">Video loading...</p>
+          </div>
+          <div class="statsC">
+            <div class="emLoad"></div>
+            <p id="emL" class="statL">Emotion loading...</p>
+          </div>
+          <div class="statsC">
+            <div class="spLoad"></div>
+            <p id="spL" class="statL">Spotify loading...</p>
+          </div>
+          <button id="spotLoad" onclick="spotLo()">Load Spotify</button>
+        </div>
       </div>
       <div class="box">
         <video
           id="video"
-          style="height: 410px"
-          width="720"
+          style="height: 450px; border-radius: 10px;"
+          width="800"
           height="560"
           autoplay
           muted
@@ -74,23 +89,25 @@
         <br />
         <div class="buts">
           <button id="save-exp" onclick="sendEmotion()" style="height: 30px">
-            Save Expression
+            Save
           </button>
           <button id="reset" onclick="reset()" style="height: 30px">
-            Reset Video
+            Reset
           </button>
         </div>
-        <br />
-        <div style="display: grid; grid-template-columns: 150px 420px">
-          <p>Emotion predicted:</p>
+      </div>
+      <div>
+        <div class="emRes">
+          <p style="margin-top: 0;">Emotion predicted:</p>
           <p id="exp"></p>
         </div>
         <br />
-        <button id="get-songs" onclick="getSongs()" style="height: 30px">
-          Get Songs
+        <button id="get-songs" onclick="getSongs()" style="height: 30px; width: 150px;">
+          Get songs
         </button>
-        <p>Here are your recommended songs:</p>
-        <div id="url" style="max-width: 720px"></div>
+        <br />
+        <p style="color: #ffffffa0; margin-top: 18.75px;">Here are your recommended songs:</p>
+        <div id="url" class="songsL"></div>
       </div>
     </div>
   </body>
