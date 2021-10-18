@@ -5,3 +5,4 @@ gevent-websocket==0.10.1
 gunicorn
 numpy
 spotipy
+python-dotenv

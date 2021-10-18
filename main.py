@@ -1,5 +1,6 @@
 from flask import Flask, json, render_template, request, jsonify
 import os
+from dotenv import load_dotenv
 import numpy as np
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -7,8 +8,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 app = Flask(__name__)
 
-
-app.secret_key = 'R4roMax1FutSk8Ba'
+load_dotenv()
+app.secret_key = os.getenv('SECRET_KEY')
 
 emDetected = "def"
 
